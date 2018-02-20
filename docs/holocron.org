@@ -1,0 +1,108 @@
+#+TITLE: Holocron
+#+AUTHOR: Allen Gooch
+#+EMAIL: allen.gooch@gmail.com
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LANGUAGE: en
+
+* Holocron
+** Overview
+
+   This document describes how to install a Holocron in a Kubernetes cluster.
+
+** Analysis
+*** Core services
+**** Git repository hosting service
+
+     The single most important service possible.  I definitely want to host git
+     repositories.  After looking at many options, I've decided that [[https://about.gitlab.com/][GitLab]] 
+     Libre edition will work well for my needs as it:
+     - supports on-premise install
+     - is free for unlimited number of users
+     - is available as a Docker image
+
+**** Code review service
+
+     GitLab already provides an integrated code review tool, so nothing new to
+     to add to the stack.
+
+**** Issue tracker service
+
+     GitLab already provides an integrated issue tracker tool, so nothing new to
+     add to the stack.
+
+**** CI/CD service
+
+     GitLab already provides an integrated CI/CD tool, so nothing new to add to
+     the stack.
+
+     As [[https://jenkins.io/][Jenkins]] is highly used everywhere, I may look into adding it if the 
+     GitLab CI/CD does not work as well.
+
+**** Read the docs service
+
+     Projects should provide documentation as part of their builds.  Tools such
+     as [[http://www.sphinx-doc.org/en/master/][Sphinx]] enable projects to provide documentation that can be uploaded to
+     a [[https://readthedocs.org/][Read the Docs]] service.  Sphinx also allows linking between different 
+     uploaded doc sets.
+
+**** Developer wiki service
+
+     Developers often need to add non-generated documentation.  A wiki is a 
+     good fit for that.  There are several that look like good candidates:
+     - [[https://www.mediawiki.org][MediaWiki]]
+     - [[http://twiki.org/][TWiki]]
+     - [[https://www.dokuwiki.org/][DokuWiki]]
+
+     I'm going to start with DokuWiki as it looks simple, stable, extensible,
+     and themable.
+
+*** Language registry services
+
+    These are the languages I use and care about.
+
+**** Elixir package registry
+
+     Elixir packages are served by the [[https://hex.pm/][Hex]] package registry service.  It is open
+     source and available on its [[https://github.com/hexpm/hexpm][project GitHub page]].
+
+**** Python package registry
+
+     Python packages are served by the [[https://pypi.org/][Warehouse]] package registry service.  It is
+     open source and available on its [[https://github.com/pypa/warehouse][project GitHub page]].
+
+**** JavaScript package registry
+
+     JavaScript packages are served by the [[https://www.npmjs.com/][NPM]] package registry service.  It is
+     open source and available on its [[https://github.com/npm/npm][project GitHub page]].
+
+*** Automation registry services
+
+    I plan on using Ansible for my automation.
+
+**** Ansible roles registry
+
+     Ansible roles are served by the [[http://docs.ansible.com/ansible/latest/galaxy.html][Ansible Galaxy]] roles registry service.  It
+     ia open source and available on its [[https://github.com/ansible/galaxy][project GitHub page]].
+
+*** Docker registry services
+
+    Docker images are served by the [[https://hub.docker.com/][Docker Hub]. The 
+    registry portion, not including the web ui, is open source and available on its
+    [[https://github.com/docker/distribution][project GitHub page]].
+
+*** Kubernetes registry services
+
+**** Helm charts registry
+
+     I plan on describing deployments in terms of Kubernetes [[https://github.com/kubernetes/charts][charts]] and the [[https://helm.sh/][Helm]]
+     deployment management client.  A chart server, in the form of an http server
+     serving charts stored on S3 or a cluster volume should work nicely.
+
+**** Dotmesh dots registry
+
+     I often work on stateful services and wish to be able to snapshot, share,
+     and restore data necessary for my services.  The [[https://dotmesh.com/][dotmesh]] client and data
+     'dots' registry service should work nicely.
+
+** Usage

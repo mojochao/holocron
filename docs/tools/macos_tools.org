@@ -1,0 +1,77 @@
+#+TITLE: Holocron Tools
+#+AUTHOR: Allen Gooch
+#+EMAIL: allen.gooch@gmail.com
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LANGUAGE: en
+
+* Install on macOS
+
+   Note that [[https://brew.sh/][Homebrew]] is used for installing packages on macOS.  Ensure that it's
+   installed before proceeding.
+
+
+   A docker environment is used to run images in containers.
+
+   Install docker if it's not already installed.
+
+#+NAME: macos_install_docker
+#+BEGIN_SRC sh :tangle yes
+echo 'Installing docker if needed...'
+command -v docker >/dev/null 2>&1 || brew cask install docker
+#+END_SRC
+
+   After install, you should see the Docker Whale icon in your Menu Bar.
+   Check the docker version with the following command.
+
+#+NAME: macos_check_docker_version
+#+BEGIN_SRC sh :tangle yes
+echo 'Checking docker version...'
+docker version
+#+END_SRC
+
+   The kubectl command is used to manage the Kubernetes cluster at the lowest
+   level.
+
+   Install kubectl if it's not already installed.
+
+#+NAME: macos_install_kubectl
+#+BEGIN_SRC sh :tangle yes
+echo 'Installing kubectl if needed...'
+command -v kubectl >/dev/null 2>&1 || brew install kubectl
+#+END_SRC
+
+   Check the kubectl version with the following command.
+
+#+NAME: macos_check_kubectl_version
+#+BEGIN_SRC sh :tangle yes
+echo 'Checking kubectl version...'
+kubectl version
+#+END_SRC
+
+   The helm command is what is used to manage the Kubernetes cluster at a very
+   high level.
+
+   Install helm if it's not already installed.
+
+#+NAME: macos_install_helm
+ #+BEGIN_SRC sh :tangle yes
+echo 'Installing helm if needed...'
+command -v kubernetes-helm >/dev/null 2>&1 || brew install kubernetes-helm
+ #+END_SRC
+
+   Check the helm version with the following command.
+
+#+NAME: macos_check_kubectl_version
+#+BEGIN_SRC sh :tangle yes
+echo 'Checking kubect version...'
+kubectl version
+#+END_SRC
+
+   Congratulations, you now have the tools installed to work with Kubernetes 
+   clusters.
+
+   You will still need to have a cluster to work with.  This project provides
+   docs on creating minikube, aws ec2, and gcloud clusters.  Ensure that you
+   have created one before finishing up with the holocron creation doc.
+
